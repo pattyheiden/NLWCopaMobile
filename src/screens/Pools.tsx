@@ -5,7 +5,7 @@ import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../services/api";
 import { useCallback, useState } from 'react';
-import { PoolCard, PoolCardPros } from "../components/PoolCard";
+import { PoolCard, PoolCardProps } from "../components/PoolCard";
 import { Loading } from "../components/Loading";
 import { EmptyPoolList } from "../components/EmptyPoolList";
 import { useFocusEffect } from "@react-navigation/native";
@@ -13,7 +13,7 @@ import { useFocusEffect } from "@react-navigation/native";
 export function Pools() {
     const [isLoading, setIsLoading] = useState(true);
 
-    const [pools, setPools] = useState<PoolCardPros[]>([]);
+    const [pools, setPools] = useState<PoolCardProps[]>([]);
 
     const { navigate } = useNavigation();
 
@@ -60,7 +60,11 @@ export function Pools() {
                     <FlatList
                         data={pools}
                         keyExtractor={item => item.id}
-                        renderItem={({ item }) => <PoolCard data={item} />}
+                        renderItem={({ item }) => (
+                            <PoolCard data={item}
+                                onPress={() => navigate('details', { id: item.id })}
+                            />
+                        )}
                         px={5}
                         showsVerticalScrollIndicator={false}
                         _contentContainerStyle={{ pb: 10 }}
