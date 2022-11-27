@@ -93,7 +93,8 @@ export function Details() {
                         </HStack>
 
                         <Guesses 
-                            poolId={poolDetails.id}      
+                            poolId={poolDetails.id} 
+                            code={poolDetails.code}     
                        />
 
                     </VStack>
