@@ -4,6 +4,7 @@ import { useRoute } from "@react-navigation/native";
 import { User } from "phosphor-react-native";
 import { useState, useEffect } from 'react';
 import { Loading } from "../components/Loading";
+import { Guesses } from "../components/Guesses";
 import { Option } from "../components/Option";
 import { api } from '../services/api';
 import { PoolCardProps } from '../components/PoolCard';
@@ -90,6 +91,10 @@ export function Details() {
                                 onPress={() => setOptionSelected('ranking')}
                             />
                         </HStack>
+
+                        <Guesses 
+                            poolId={poolDetails.id}      
+                       />
 
                     </VStack>
                     : <EmptyMyPoolList code={poolDetails.code} />
